@@ -1,0 +1,27 @@
+name: Build and Run C Program
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install GCC
+        run: sudo apt update && sudo apt install -y gcc
+
+      - name: Compile C Program
+        run: gcc pattern.c -o pattern
+
+      - name: Run C Program
+        run: |
+          echo 5 | ./pattern
